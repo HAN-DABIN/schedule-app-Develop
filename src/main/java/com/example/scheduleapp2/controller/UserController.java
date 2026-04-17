@@ -9,6 +9,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -28,6 +30,9 @@ public class UserController {
     }
 
     @GetMapping
-    public RequestEntity<GetUserResponse>
+    public RequestEntity<GetUserResponse> findAllUser() {
+        List<GetUserResponse> result = userService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
 
 }
