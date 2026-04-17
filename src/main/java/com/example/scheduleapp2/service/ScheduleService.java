@@ -52,6 +52,20 @@ public class ScheduleService {
                .collect(Collectors.toList());
     }
 
-
+    @Transactional(readOnly = true)
+    public GetScheduleResponse findOne(Long scheduleId) {
+            Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
+                    () -> new IllegalStateException("해당 일정을 찾을 수 없습니다.")
+            );
+            return new GetScheduleResponse(
+                    schedule.getId(),
+                    schedule.getUserId(),
+                    schedule.getTitle(),
+                    schedule.getContents(),
+                    schedule.getCreatedAt(),
+                    schedule.getModifiedAt()
+            );
+    }
 
 }
+
