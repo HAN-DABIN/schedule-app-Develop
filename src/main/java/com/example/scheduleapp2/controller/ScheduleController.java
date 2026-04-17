@@ -2,13 +2,13 @@ package com.example.scheduleapp2.controller;
 
 import com.example.scheduleapp2.dto.CreateScheduleRequest;
 import com.example.scheduleapp2.dto.CreateScheduleResponse;
+import com.example.scheduleapp2.dto.GetScheduleResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.scheduleapp2.service.ScheduleService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping
@@ -28,4 +28,8 @@ public class ScheduleController {
             @RequestBody CreateScheduleRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ScheduleService.save(request));
     }
+
+    @GetMapping("/schedules")
+    public ResponseEntity<List<GetScheduleResponse>> GetSchedule() {
+        return ResponseEntity.status(HttpStatus.OK).body(ScheduleService.findAll());
 }
