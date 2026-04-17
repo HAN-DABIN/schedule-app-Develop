@@ -3,9 +3,9 @@ package com.example.scheduleapp2.dto;
 public class CreateScheduleRequest {
 
     // 속성
-    private final Long userId;
-    private final String title;
-    private final String contents;
+    private Long userId;
+    private String title;
+    private String contents;
 
     // 생성자
 

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ScheduleService {
@@ -38,20 +39,16 @@ public class ScheduleService {
 
     @Transactional(readOnly = true)
     public List<GetScheduleResponse> findAll() {
-        List<Schedule> schedules = scheduleRepository.findAll();
-        List<GetScheduleResponse> dtos = new ArrayList<>();
-        for (Schedule schedule : schedules) {
-            GetScheduleResponse dto = new GetScheduleResponse(
-                    schedule.getId(),
-                    schedule.getUserId(),
-                    schedule.getTitle(),
-                    schedule.getContents(),
-                    schedule.getCreatedAt(),
-                    schedule.getModifiedAt()
-            );
-            dtos.add(dto);
-        }
-        return dtos;
-
+       return scheduleRepository.findAll()
+               .stream()
+               .map(schedule -> new GetScheduleResponse(
+                       schedule.getId(),
+                       schedule.getUserId(),
+                       schedule.getTitle(),
+                       schedule.getContents(),
+                       schedule.getCreatedAt(),
+                       schedule.getModifiedAt()
+               ))
+               .collect(Collectors.toList());
     }
 }
