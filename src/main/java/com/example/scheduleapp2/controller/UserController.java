@@ -40,4 +40,11 @@ public class UserController {
             @PathVariable Long userId) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.findOne(userId));
     }
+
+    @PutMapping("/{userId}")
+    public ResponseEntity<UpdateUserResponse> updateUser(
+            @PathVariable Long userId,
+            @RequestBody UpdateUserRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.update(userId, request));
+    }
 }
