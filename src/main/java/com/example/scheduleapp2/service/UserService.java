@@ -1,8 +1,6 @@
 package com.example.scheduleapp2.service;
 
-import com.example.scheduleapp2.dto.CreateUserRequest;
-import com.example.scheduleapp2.dto.CreateUserResponse;
-import com.example.scheduleapp2.dto.GetUserResponse;
+import com.example.scheduleapp2.dto.*;
 import com.example.scheduleapp2.entity.User;
 import com.example.scheduleapp2.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -54,6 +52,24 @@ public class UserService {
                 () -> new IllegalStateException("해당 유저가 없습니다.")
         );
         return new GetUserResponse(
+                user.getId(),
+                user.getUserName(),
+                user.getEmail(),
+                user.getCreatedAt(),
+                user.getModifiedAt()
+        );
+    }
+
+    @Transactional
+    public UpdateUserResponse update(Long userId, UpdateUserRequest request) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new IllegalStateException("해당 유저가 없습니다.")
+        );
+        user.UpdateUser(
+                request.getUserName(),
+                request.getEmail()
+        );
+        return new UpdateUserResponse(
                 user.getId(),
                 user.getUserName(),
                 user.getEmail(),

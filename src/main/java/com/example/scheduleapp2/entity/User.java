@@ -20,6 +20,10 @@ public class User extends BaseEntity{
         this.userName = userName;
         this.email = email;
     }
+    public void UpdateUser(String userName, String email) {
+        this.userName = userName;
+        this.email = email;
+    }
 
     // 기능
     public Long getId() {
