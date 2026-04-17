@@ -2,10 +2,14 @@ package com.example.scheduleapp2.service;
 
 import com.example.scheduleapp2.dto.CreateScheduleRequest;
 import com.example.scheduleapp2.dto.CreateScheduleResponse;
+import com.example.scheduleapp2.dto.GetScheduleResponse;
 import com.example.scheduleapp2.entity.Schedule;
 import org.springframework.stereotype.Service;
 import com.example.scheduleapp2.repository.ScheduleRepository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ScheduleService {
@@ -30,5 +34,24 @@ public class ScheduleService {
                 savedSchedule.getCreatedAt(),
                 savedSchedule.getModifiedAt()
         );
+    }
+
+    @Transactional(readOnly = true)
+    public List<GetScheduleResponse> findAll() {
+        List<Schedule> schedules = scheduleRepository.findAll();
+        List<GetScheduleResponse> dtos = new ArrayList<>();
+        for (Schedule schedule : schedules) {
+            GetScheduleResponse dto = new GetScheduleResponse(
+                    schedule.getId(),
+                    schedule.getUserId(),
+                    schedule.getTitle(),
+                    schedule.getContents(),
+                    schedule.getCreatedAt(),
+                    schedule.getModifiedAt()
+            );
+            dtos.add(dto);
+        }
+        return dtos;
+
     }
 }

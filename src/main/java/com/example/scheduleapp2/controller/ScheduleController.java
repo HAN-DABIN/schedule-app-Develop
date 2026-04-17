@@ -3,6 +3,7 @@ package com.example.scheduleapp2.controller;
 import com.example.scheduleapp2.dto.CreateScheduleRequest;
 import com.example.scheduleapp2.dto.CreateScheduleResponse;
 import com.example.scheduleapp2.dto.GetScheduleResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class ScheduleController {
 
     // 속성
     private final ScheduleService ScheduleService;
+    private ScheduleService scheduleService;
 
     // 생성자
     public ScheduleController(ScheduleService service) {
@@ -30,6 +32,8 @@ public class ScheduleController {
     }
 
     @GetMapping("/schedules")
-    public ResponseEntity<List<GetScheduleResponse>> GetSchedule() {
-        return ResponseEntity.status(HttpStatus.OK).body(ScheduleService.findAll());
+    public ResponseEntity<List<GetScheduleResponse>> findAll() {
+        List<GetScheduleResponse> result = scheduleService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
 }
