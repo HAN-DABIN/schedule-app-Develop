@@ -11,10 +11,14 @@ import service.ScheduleService;
 public class ScheduleController {
 
     // 속성
-    private final ScheduleService service;
+    private final ScheduleService Scheduleservice;
 
     // 생성자
     public ScheduleController(ScheduleService service) {
-        this.service = service;
+        this.Scheduleservice = service;
     }
+
+    // 기능
+    @PostMapping("/schedules")
+    public ResponseEntity<CreateScheduleResponse>
 }
