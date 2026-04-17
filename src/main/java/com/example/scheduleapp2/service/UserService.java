@@ -2,10 +2,14 @@ package com.example.scheduleapp2.service;
 
 import com.example.scheduleapp2.dto.CreateUserRequest;
 import com.example.scheduleapp2.dto.CreateUserResponse;
+import com.example.scheduleapp2.dto.GetUserResponse;
 import com.example.scheduleapp2.entity.User;
 import com.example.scheduleapp2.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -28,6 +32,20 @@ public class UserService {
                 saveUser.getCreatedAt(),
                 saveUser.getModifiedAt()
         );
+    }
+
+    @Transactional(readOnly = true)
+    public List<GetUserResponse> findAll() {
+        return userRepository.findAll()
+                .stream()
+                .map(user -> new GetUserResponse(
+                        user.getId(),
+                        user.getUserName(),
+                        user.getEmail(),
+                        user.getCreatedAt(),
+                        user.getModifiedAt()
+                ))
+                .collect(Collectors.toList());
     }
 
 

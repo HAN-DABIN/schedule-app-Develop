@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping
-    public RequestEntity<GetUserResponse> findAllUser() {
+    public ResponseEntity<List<GetUserResponse>> findAllUser() {
         List<GetUserResponse> result = userService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
