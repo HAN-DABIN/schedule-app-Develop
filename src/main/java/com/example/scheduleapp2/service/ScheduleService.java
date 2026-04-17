@@ -1,8 +1,6 @@
 package com.example.scheduleapp2.service;
 
-import com.example.scheduleapp2.dto.CreateScheduleRequest;
-import com.example.scheduleapp2.dto.CreateScheduleResponse;
-import com.example.scheduleapp2.dto.GetScheduleResponse;
+import com.example.scheduleapp2.dto.*;
 import com.example.scheduleapp2.entity.Schedule;
 import org.springframework.stereotype.Service;
 import com.example.scheduleapp2.repository.ScheduleRepository;
@@ -67,5 +65,23 @@ public class ScheduleService {
             );
     }
 
+    @Transactional
+    public UpdateScheduleResponse update(Long scheduleId, UpdateScheduleRequest request) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
+                () -> new IllegalStateException("해당 일정을 찾을 수 없습니다.")
+        );
+        schedule.UpdateSchedule(
+                request.getUserId(),
+                request.getTitle(),
+                request.getContents());
+        return new UpdateScheduleResponse(
+                schedule.getId(),
+                schedule.getUserId(),
+                schedule.getTitle(),
+                schedule.getContents(),
+                schedule.getCreatedAt(),
+                schedule.getModifiedAt()
+        );
+    }
 }
 

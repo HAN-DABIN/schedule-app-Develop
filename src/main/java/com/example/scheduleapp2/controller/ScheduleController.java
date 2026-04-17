@@ -39,11 +39,10 @@ public class ScheduleController {
         return ResponseEntity.status(HttpStatus.OK).body(ScheduleService.findOne(scheduleId));
     }
 
-    @PutMapping("/{schduleId}")
+    @PutMapping("/{scheduleId}")
     public ResponseEntity<UpdateScheduleResponse> UpdateSchedule(
-            @PathVariable Long schduleId,
+            @PathVariable Long scheduleId,
             @RequestBody UpdateScheduleRequest request) {
-        return ResponseEntity.status(HttpStatus.OK).body(ScheduleService.update(schduleId, request));
+        return ResponseEntity.status(HttpStatus.OK).body(ScheduleService.update(scheduleId, request));
     }
-    )
 }

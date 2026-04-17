@@ -22,6 +22,11 @@ public class Schedule extends BaseEntity{
         this.title = title;
         this.contents = contents;
     }
+    public void UpdateSchedule(Long userId, String title, String contents) {
+        this.userId = userId;
+        this.title = title;
+        this.contents = contents;
+    }
 
     // 기능
 
@@ -40,4 +45,6 @@ public class Schedule extends BaseEntity{
     public String getContents() {
         return contents;
     }
+
+
 }
