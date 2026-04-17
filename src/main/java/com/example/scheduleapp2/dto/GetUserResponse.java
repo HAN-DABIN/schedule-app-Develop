@@ -2,7 +2,7 @@ package com.example.scheduleapp2.dto;
 
 import java.time.LocalDateTime;
 
-public class CreateUserResponse {
+public class GetUserResponse {
     // 속성
     private final Long id;
     private final String userName;
@@ -11,7 +11,7 @@ public class CreateUserResponse {
     private final LocalDateTime modifiedAt;
 
     // 생성자
-    public CreateUserResponse(Long id, String userName, String email, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public GetUserResponse(Long id, String userName, String email, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -20,7 +20,7 @@ public class CreateUserResponse {
     }
 
     // 기능
-    public Long getId() {
+    public Long Id() {
         return id;
     }
     public String getUserName() {
