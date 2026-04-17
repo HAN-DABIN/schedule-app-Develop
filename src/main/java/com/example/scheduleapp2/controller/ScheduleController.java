@@ -30,8 +30,14 @@ public class ScheduleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GetScheduleResponse>> findAll() {
+    public ResponseEntity<List<GetScheduleResponse>> findAllSchedule() {
         List<GetScheduleResponse> result = ScheduleService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
+
+    @GetMapping("/{id)")
+    public ResponseEntity<GetScheduleResponse> findOneSchedule(
+            @PathVariable Long scheduleId) { // service에 id넘기기
+        return ResponseEntity.status(HttpStatus.OK).body(ScheduleService.findOne(scheduleId));
+
 }
