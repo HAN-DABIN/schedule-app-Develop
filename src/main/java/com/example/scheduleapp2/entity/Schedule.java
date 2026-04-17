@@ -29,7 +29,6 @@ public class Schedule extends BaseEntity{
     }
 
     // 기능
-
     public Long getId() {
         return id;
     }
@@ -45,6 +44,4 @@ public class Schedule extends BaseEntity{
     public String getContents() {
         return contents;
     }
-
-
 }
