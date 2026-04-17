@@ -1,9 +1,6 @@
 package com.example.scheduleapp2.controller;
 
-import com.example.scheduleapp2.dto.CreateScheduleRequest;
-import com.example.scheduleapp2.dto.CreateScheduleResponse;
-import com.example.scheduleapp2.dto.GetScheduleResponse;
-import com.example.scheduleapp2.dto.UpdateScheduleResponse;
+import com.example.scheduleapp2.dto.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +40,10 @@ public class ScheduleController {
     }
 
     @PutMapping("/{schduleId}")
-    public ResponseEntity<UpdateScheduleResponse> UpdateSchedule()
+    public ResponseEntity<UpdateScheduleResponse> UpdateSchedule(
+            @PathVariable Long schduleId,
+            @RequestBody UpdateScheduleRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(ScheduleService.update(schduleId, request));
+    }
+    )
 }
