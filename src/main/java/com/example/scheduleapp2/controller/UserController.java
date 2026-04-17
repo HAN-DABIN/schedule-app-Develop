@@ -40,6 +40,4 @@ public class UserController {
             @PathVariable Long userId) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.findOne(userId));
     }
-    )
-
 }

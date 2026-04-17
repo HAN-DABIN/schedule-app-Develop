@@ -48,6 +48,20 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public GetUserResponse findOne(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new IllegalStateException("해당 유저가 없습니다.")
+        );
+        return new GetUserResponse(
+                user.getId(),
+                user.getUserName(),
+                user.getEmail(),
+                user.getCreatedAt(),
+                user.getModifiedAt()
+        );
+    }
+
 
     // 기능
 }
