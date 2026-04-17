@@ -1,4 +1,4 @@
-package entity;
+package com.example.scheduleapp2.entity;
 
 import jakarta.persistence.*;
 

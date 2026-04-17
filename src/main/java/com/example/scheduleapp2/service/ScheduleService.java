@@ -1,7 +1,7 @@
-package service;
+package com.example.scheduleapp2.service;
 
 import org.springframework.stereotype.Service;
-import repository.ScheduleRepository;
+import com.example.scheduleapp2.repository.ScheduleRepository;
 
 @Service
 public class ScheduleService {

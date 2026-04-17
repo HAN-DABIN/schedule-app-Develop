@@ -1,8 +1,8 @@
-package dto;
+package com.example.scheduleapp2.dto;
 
 import java.time.LocalDateTime;
 
-public class CreateResponse {
+public class CreateScheduleResponse {
     // 속성
     private Long id;
     private Long userId;
@@ -13,7 +13,7 @@ public class CreateResponse {
 
 
     // 생성자
-    public CreateResponse(Long id, Long userId, String title, String contents, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public CreateScheduleResponse(Long id, Long userId, String title, String contents, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.userId = userId;
         this.title = title;
