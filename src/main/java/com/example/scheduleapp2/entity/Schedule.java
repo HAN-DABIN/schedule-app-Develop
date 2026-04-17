@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "schedules")
-public class Schedule {
+public class Schedule extends BaseEntity{
 
     // 속성
     @Id

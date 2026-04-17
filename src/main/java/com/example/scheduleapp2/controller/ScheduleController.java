@@ -15,18 +15,17 @@ import com.example.scheduleapp2.service.ScheduleService;
 public class ScheduleController {
 
     // 속성
-    private final ScheduleService Scheduleservice;
+    private final ScheduleService ScheduleService;
 
     // 생성자
     public ScheduleController(ScheduleService service) {
-        this.Scheduleservice = service;
+        this.ScheduleService = service;
     }
 
     // 기능
     @PostMapping("/schedules")
     public ResponseEntity<CreateScheduleResponse> CreateSchedule(
             @RequestBody CreateScheduleRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(ScheduleService.save(request));
     }
-            )
 }
