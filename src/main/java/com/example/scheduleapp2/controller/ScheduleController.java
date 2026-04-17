@@ -11,7 +11,7 @@ import com.example.scheduleapp2.service.ScheduleService;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/schedules")
 public class ScheduleController {
 
     // 속성
@@ -23,13 +23,13 @@ public class ScheduleController {
     }
 
     // 기능
-    @PostMapping("/schedules")
+    @PostMapping
     public ResponseEntity<CreateScheduleResponse> CreateSchedule(
             @RequestBody CreateScheduleRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ScheduleService.save(request));
     }
 
-    @GetMapping("/schedules")
+    @GetMapping
     public ResponseEntity<List<GetScheduleResponse>> findAll() {
         List<GetScheduleResponse> result = ScheduleService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(result);
