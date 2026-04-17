@@ -16,8 +16,7 @@ public class User extends BaseEntity{
     // 생성자
     protected User() {}
 
-    public User(Long id, String userName, String email) {
-        this.id = id;
+    public User(String userName, String email) {
         this.userName = userName;
         this.email = email;
     }
