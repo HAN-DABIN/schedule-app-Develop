@@ -10,32 +10,37 @@ public class Schedule extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
     private String title;
     private String contents;
 
     // 생성자
     protected Schedule() {}
 
-    public Schedule(Long userId, String title, String contents) {
-        this.userId = userId;
+    public Schedule(User user, String title, String contents) {
+        this.user = user;
         this.title = title;
         this.contents = contents;
     }
-    public void UpdateSchedule(Long userId, String title, String contents) {
-        this.userId = userId;
+
+    public void UpdateSchedule(User user, String title, String contents) {
+        this.user = user;
         this.title = title;
         this.contents = contents;
     }
 
     // 기능
+
     public Long getId() {
         return id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
+
 
     public String getTitle() {
         return title;

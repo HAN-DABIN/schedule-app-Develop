@@ -2,6 +2,7 @@ package com.example.scheduleapp2.service;
 
 import com.example.scheduleapp2.dto.*;
 import com.example.scheduleapp2.entity.Schedule;
+import com.example.scheduleapp2.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import com.example.scheduleapp2.repository.ScheduleRepository;
 import org.springframework.transaction.annotation.Transactional;
