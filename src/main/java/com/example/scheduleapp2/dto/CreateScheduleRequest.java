@@ -14,7 +14,6 @@ public class CreateScheduleRequest {
     public Long getUserId() {
         return userId;
     }
-
     public String getTitle() {
         return title;
     }

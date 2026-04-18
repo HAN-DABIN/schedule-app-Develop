@@ -6,6 +6,7 @@ public class CreateScheduleResponse {
     // 속성
     private Long id;
     private Long userId;
+    private String userName;
     private String title;
     private String contents;
     private LocalDateTime createdAt;
@@ -13,9 +14,10 @@ public class CreateScheduleResponse {
 
 
     // 생성자
-    public CreateScheduleResponse(Long id, Long userId, String title, String contents, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public CreateScheduleResponse(Long id, Long userId, String userName, String title, String contents, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.userId = userId;
+        this.userName = userName;
         this.title = title;
         this.contents = contents;
         this.createdAt = createdAt;
@@ -30,6 +32,10 @@ public class CreateScheduleResponse {
 
     public Long getUserId() {
         return userId;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getTitle() {
