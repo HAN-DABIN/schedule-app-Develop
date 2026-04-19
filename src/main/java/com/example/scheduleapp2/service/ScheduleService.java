@@ -79,7 +79,7 @@ public class ScheduleService {
         User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new IllegalStateException("해당 유저가 없습니다."));
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
-                () -> new ScheduleNotFoundException("해당 일정을 찾을 수 없습니다.")
+                () -> new ScheduleNotFoundException("수정할 일정이 없습니다.")
         );
         schedule.UpdateSchedule(
                 user,
@@ -100,7 +100,7 @@ public class ScheduleService {
     public void delete(Long scheduleId) {
         boolean existence = scheduleRepository.existsById(scheduleId);
         if (!existence) {
-            throw new ScheduleNotFoundException("해당 일정을 찾을 수 없습니다.");
+            throw new ScheduleNotFoundException("삭제할 일정이 없습니다.");
         }
         scheduleRepository.deleteById(scheduleId);
     }

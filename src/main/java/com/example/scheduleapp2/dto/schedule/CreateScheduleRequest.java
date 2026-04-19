@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Size;
 public class CreateScheduleRequest {
 
     // 속성
-    @NotNull(message = "유저 ID는 필수입니다.")
+    @NotNull(message = "유저 ID는 필수 입력값입니다.")
     @Positive(message = "유저 ID는 1 이상의 양수여야 합니다.")
     private Long userId;
     @NotBlank(message = "일정 제목은 필수 입력값입니다.")
