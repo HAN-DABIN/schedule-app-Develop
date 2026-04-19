@@ -12,15 +12,18 @@ public class User extends BaseEntity{
     private Long id;
     private String userName;
     private String email;
+    private String password;
 
     // 생성자
     protected User() {}
 
-    public User(String userName, String email) {
+    public User(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
+        this.password = password;
     }
-    public void UpdateUser(String userName, String email) {
+
+    public void UpdateUser(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
     }
@@ -34,5 +37,8 @@ public class User extends BaseEntity{
     }
     public String getEmail() {
         return email;
+    }
+    public String getPassword() {
+        return password;
     }
 }
