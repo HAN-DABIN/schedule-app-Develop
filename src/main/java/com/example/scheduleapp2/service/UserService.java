@@ -91,7 +91,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public SessionUser login(@Valid LoginRequest request) {
+    public SessionUser login(
+            @Valid LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(
                 () -> new IllegalStateException("존재하지 않는 email입니다.")
         );
