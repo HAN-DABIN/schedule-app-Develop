@@ -4,6 +4,7 @@ import com.example.scheduleapp2.dto.login.LoginRequest;
 import com.example.scheduleapp2.dto.login.SessionUser;
 import com.example.scheduleapp2.dto.user.*;
 import com.example.scheduleapp2.entity.User;
+import com.example.scheduleapp2.exception.LoginNotFoundException;
 import com.example.scheduleapp2.exception.UserNotFoundException;
 import com.example.scheduleapp2.repository.UserRepository;
 import jakarta.validation.Valid;
@@ -95,7 +96,7 @@ public class UserService {
     public SessionUser login(
             @Valid LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(
-                () -> new IllegalStateException("존재하지 않는 email입니다.")
+                () -> new LoginNotFoundException("존재하지 않는 email입니다.")
         );
         return new SessionUser(
                 user.getId(),
