@@ -1,6 +1,7 @@
 package com.example.scheduleapp2.controller;
 
 import com.example.scheduleapp2.dto.schedule.*;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ public class ScheduleController {
     // 기능
     @PostMapping
     public ResponseEntity<CreateScheduleResponse> createSchedule(
+            @Valid
             @RequestBody CreateScheduleRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(scheduleService.save(request));
     }
@@ -41,6 +43,7 @@ public class ScheduleController {
 
     @PutMapping("/{scheduleId}")
     public ResponseEntity<UpdateScheduleResponse> updateSchedule(
+            @Valid
             @PathVariable Long scheduleId,
             @RequestBody UpdateScheduleRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(scheduleService.update(scheduleId, request));
