@@ -1,6 +1,8 @@
 package com.example.scheduleapp2.service;
 
-import com.example.scheduleapp2.dto.*;
+import com.example.scheduleapp2.dto.login.LoginRequest;
+import com.example.scheduleapp2.dto.login.SessionUser;
+import com.example.scheduleapp2.dto.user.*;
 import com.example.scheduleapp2.entity.User;
 import com.example.scheduleapp2.repository.UserRepository;
 import jakarta.validation.Valid;

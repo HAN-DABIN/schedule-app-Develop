@@ -1,4 +1,4 @@
-package com.example.scheduleapp2.dto;
+package com.example.scheduleapp2.dto.schedule;
 
 public class UpdateScheduleRequest {
     // 속성

@@ -1,6 +1,6 @@
 package com.example.scheduleapp2.service;
 
-import com.example.scheduleapp2.dto.*;
+import com.example.scheduleapp2.dto.schedule.*;
 import com.example.scheduleapp2.entity.Schedule;
 import com.example.scheduleapp2.entity.User;
 import com.example.scheduleapp2.repository.UserRepository;

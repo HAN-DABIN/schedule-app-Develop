@@ -1,4 +1,4 @@
-package com.example.scheduleapp2.dto;
+package com.example.scheduleapp2.dto.user;
 
 import java.time.LocalDateTime;
 

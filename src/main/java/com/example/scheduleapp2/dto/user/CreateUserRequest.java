@@ -1,16 +1,21 @@
-package com.example.scheduleapp2.dto;
+package com.example.scheduleapp2.dto.user;
 
 import jakarta.validation.constraints.Size;
 
-public class LoginRequest {
+public class CreateUserRequest {
     // 속성
+    private String userName;
     private String email;
-    @Size(min = 8, message = "비밀번호는 {min}자 이상 입력해주세요.")
+    @Size(min = 8, message = "비밀번호는 {min}자 이상이어야 합니다")
     private String password;
 
     // 생성자
 
     // 기능
+
+    public String getUserName() {
+        return userName;
+    }
     public String getEmail() {
         return email;
     }

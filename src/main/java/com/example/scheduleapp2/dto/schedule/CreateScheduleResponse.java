@@ -1,8 +1,8 @@
-package com.example.scheduleapp2.dto;
+package com.example.scheduleapp2.dto.schedule;
 
 import java.time.LocalDateTime;
 
-public class UpdateScheduleResponse {
+public class CreateScheduleResponse {
     // 속성
     private Long id;
     private Long userId;
@@ -14,7 +14,7 @@ public class UpdateScheduleResponse {
 
 
     // 생성자
-    public UpdateScheduleResponse(Long id, Long userId, String userName, String title, String contents, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public CreateScheduleResponse(Long id, Long userId, String userName, String title, String contents, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.userId = userId;
         this.userName = userName;

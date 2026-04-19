@@ -1,8 +1,8 @@
-package com.example.scheduleapp2.dto;
+package com.example.scheduleapp2.dto.user;
 
 import jakarta.validation.constraints.Size;
 
-public class CreateUserRequest {
+public class UpdateUserRequest {
     // 속성
     private String userName;
     private String email;
