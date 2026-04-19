@@ -1,17 +1,16 @@
 package com.example.scheduleapp2.dto;
 
-public class LoginResponse {
-    // 속성
+public class SessionUser {
+
     private final Long id;
     private final String email;
+    private final String password;
 
-    // 생성자
-    public LoginResponse(Long id, String email) {
+    public SessionUser(Long id, String email, String password) {
         this.id = id;
         this.email = email;
+        this.password = password;
     }
-
-    // 기능
 
     public Long getId() {
         return id;
@@ -19,5 +18,9 @@ public class LoginResponse {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

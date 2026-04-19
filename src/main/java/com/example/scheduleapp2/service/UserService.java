@@ -3,6 +3,7 @@ package com.example.scheduleapp2.service;
 import com.example.scheduleapp2.dto.*;
 import com.example.scheduleapp2.entity.User;
 import com.example.scheduleapp2.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -85,6 +86,18 @@ public class UserService {
         if(!existence) {
             throw new IllegalStateException("삭제할 유저가 없습니다.");
         } userRepository.deleteById(userId);
+    }
+
+    @Transactional(readOnly = true)
+    public SessionUser login(@Valid LoginRequest request) {
+        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(
+                () -> new IllegalStateException("존재하지 않는 email입니다.")
+        );
+        return new SessionUser(
+                user.getId(),
+                user.getEmail(),
+                user.getPassword()
+        );
     }
 
 

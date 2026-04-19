@@ -1,7 +1,9 @@
 package com.example.scheduleapp2.controller;
 
 import com.example.scheduleapp2.dto.*;
+import com.example.scheduleapp2.entity.User;
 import com.example.scheduleapp2.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +32,13 @@ public class UserController {
 
     // 로그인
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login() {
+    public ResponseEntity<LoginResponse> login(
+            @Valid
+            @RequestBody LoginRequest request, HttpSession session) {
+        SessionUser sessionUser = userService.login(request);
+        session.setAttribute("loginUser", sessionUser);
+        LoginResponse response = new LoginResponse(sessionUser.getId(), sessionUser.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @GetMapping
