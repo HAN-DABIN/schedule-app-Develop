@@ -4,6 +4,7 @@ import com.example.scheduleapp2.dto.login.LoginRequest;
 import com.example.scheduleapp2.dto.login.SessionUser;
 import com.example.scheduleapp2.dto.user.*;
 import com.example.scheduleapp2.entity.User;
+import com.example.scheduleapp2.exception.UserNotFoundException;
 import com.example.scheduleapp2.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
@@ -52,7 +53,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public GetUserResponse findOne(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(
-                () -> new IllegalStateException("해당 유저가 없습니다.")
+                () -> new UserNotFoundException("해당 유저가 없습니다.")
         );
         return new GetUserResponse(
                 user.getId(),
@@ -66,7 +67,7 @@ public class UserService {
     @Transactional
     public UpdateUserResponse update(Long userId, UpdateUserRequest request) {
         User user = userRepository.findById(userId).orElseThrow(
-                () -> new IllegalStateException("해당 유저가 없습니다.")
+                () -> new UserNotFoundException("수정할 유저가 없습니다.")
         );
         user.UpdateUser(
                 request.getUserName(),
@@ -86,7 +87,7 @@ public class UserService {
     public void delete(Long userId) {
         boolean existence = userRepository.existsById(userId);
         if(!existence) {
-            throw new IllegalStateException("삭제할 유저가 없습니다.");
+            throw new UserNotFoundException("삭제할 유저가 없습니다.");
         } userRepository.deleteById(userId);
     }
 
