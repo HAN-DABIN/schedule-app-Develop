@@ -28,6 +28,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(request));
     }
 
+    // 로그인
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login() {
+    }
+
     @GetMapping
     public ResponseEntity<List<GetUserResponse>> findAllUser() {
         List<GetUserResponse> result = userService.findAll();
