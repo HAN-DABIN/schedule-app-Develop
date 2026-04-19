@@ -3,6 +3,7 @@ package com.example.scheduleapp2.service;
 import com.example.scheduleapp2.dto.schedule.*;
 import com.example.scheduleapp2.entity.Schedule;
 import com.example.scheduleapp2.entity.User;
+import com.example.scheduleapp2.exception.ScheduleNotFoundException;
 import com.example.scheduleapp2.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import com.example.scheduleapp2.repository.ScheduleRepository;
@@ -60,7 +61,7 @@ public class ScheduleService {
     @Transactional(readOnly = true)
     public GetScheduleResponse findOne(Long scheduleId) {
             Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
-                    () -> new IllegalStateException("해당 일정을 찾을 수 없습니다.")
+                    () -> new ScheduleNotFoundException("해당 일정을 찾을 수 없습니다.")
             );
             return new GetScheduleResponse(
                     schedule.getId(),
@@ -78,7 +79,7 @@ public class ScheduleService {
         User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new IllegalStateException("해당 유저가 없습니다."));
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
-                () -> new IllegalStateException("해당 일정을 찾을 수 없습니다.")
+                () -> new ScheduleNotFoundException("해당 일정을 찾을 수 없습니다.")
         );
         schedule.UpdateSchedule(
                 user,
@@ -99,7 +100,7 @@ public class ScheduleService {
     public void delete(Long scheduleId) {
         boolean existence = scheduleRepository.existsById(scheduleId);
         if (!existence) {
-            throw new IllegalStateException("해당 일정을 찾을 수 없습니다.");
+            throw new ScheduleNotFoundException("해당 일정을 찾을 수 없습니다.");
         }
         scheduleRepository.deleteById(scheduleId);
     }
