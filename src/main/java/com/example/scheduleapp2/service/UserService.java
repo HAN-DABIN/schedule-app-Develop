@@ -102,6 +102,10 @@ public class UserService {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(
                 () -> new LoginNotFoundException("존재하지 않는 email입니다.")
         );
+        boolean isMatch = passwordEncoder.matches(request.getPassword(), user.getPassword());
+        if(!isMatch) {
+            throw new LoginNotFoundException("비밀번호가 일치하지 않습니다.");
+        }
         return new SessionUser(
                 user.getId(),
                 user.getEmail()
