@@ -3,7 +3,6 @@ package com.example.scheduleapp2.dto.login;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
 public class LoginRequest {
     // 속성
