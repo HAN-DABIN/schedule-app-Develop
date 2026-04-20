@@ -4,12 +4,10 @@ public class SessionUser {
 
     private final Long id;
     private final String email;
-    private final String password;
 
-    public SessionUser(Long id, String email, String password) {
+    public SessionUser(Long id, String email) {
         this.id = id;
         this.email = email;
-        this.password = password;
     }
 
     public Long getId() {
@@ -18,9 +16,5 @@ public class SessionUser {
 
     public String getEmail() {
         return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }

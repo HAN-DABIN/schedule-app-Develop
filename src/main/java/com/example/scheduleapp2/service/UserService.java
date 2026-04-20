@@ -1,5 +1,4 @@
 package com.example.scheduleapp2.service;
-
 import com.example.scheduleapp2.dto.login.LoginRequest;
 import com.example.scheduleapp2.dto.login.SessionUser;
 import com.example.scheduleapp2.dto.user.*;
@@ -100,11 +99,7 @@ public class UserService {
         );
         return new SessionUser(
                 user.getId(),
-                user.getEmail(),
-                user.getPassword()
+                user.getEmail()
         );
     }
-
-
-    // 기능
 }
