@@ -1,4 +1,4 @@
-package com.example.scheduleapp2.dto;
+package com.example.scheduleapp2.dto.exception;
 
 public class ErrorResponse {
 private String message;
