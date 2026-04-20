@@ -1,4 +1,5 @@
 package com.example.scheduleapp2.service;
+import com.example.scheduleapp2.config.PasswordEncoder;
 import com.example.scheduleapp2.dto.login.LoginRequest;
 import com.example.scheduleapp2.dto.login.SessionUser;
 import com.example.scheduleapp2.dto.user.*;
@@ -17,15 +18,18 @@ import java.util.stream.Collectors;
 public class UserService {
     // 속성
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     // 생성자
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
     public CreateUserResponse save(CreateUserRequest request) {
-        User user = new User(request.getUserName(), request.getEmail(), request.getPassword());
+        String encodePassword = passwordEncoder.encode(request.getPassword());
+        User user = new User(request.getUserName(), request.getEmail(), encodePassword);
         User saveUser = userRepository.save(user);
         return new CreateUserResponse(
                 saveUser.getId(),
@@ -66,13 +70,14 @@ public class UserService {
 
     @Transactional
     public UpdateUserResponse update(Long userId, UpdateUserRequest request) {
+        String encodePassword = passwordEncoder.encode(request.getPassword());
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException("수정할 유저가 없습니다.")
         );
         user.UpdateUser(
                 request.getUserName(),
                 request.getEmail(),
-                request.getPassword()
+                encodePassword
         );
         return new UpdateUserResponse(
                 user.getId(),
