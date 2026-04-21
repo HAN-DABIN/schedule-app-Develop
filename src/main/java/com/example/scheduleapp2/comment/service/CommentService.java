@@ -4,6 +4,7 @@ import com.example.scheduleapp2.comment.dto.CreateCommentRequest;
 import com.example.scheduleapp2.comment.dto.CreateCommentResponse;
 import com.example.scheduleapp2.comment.dto.GetCommentResponse;
 import com.example.scheduleapp2.comment.entity.Comment;
+import com.example.scheduleapp2.exception.CommentNotFoundException;
 import com.example.scheduleapp2.schedule.entity.Schedule;
 import com.example.scheduleapp2.user.entity.User;
 import com.example.scheduleapp2.comment.repository.CommentRepository;
@@ -33,9 +34,9 @@ public class CommentService {
     @Transactional
     public CreateCommentResponse save(CreateCommentRequest request) {
         User user = userRepository.findById(request.getUserId())
-                .orElseThrow(() -> new IllegalStateException("해당 유저가 없습니다."));
+                .orElseThrow(() -> new CommentNotFoundException("해당 유저가 없습니다."));
         Schedule schedule = scheduleRepository.findById(request.getScheduleId())
-                .orElseThrow(() -> new IllegalStateException("해당 일정이 없습니다."));
+                .orElseThrow(() -> new CommentNotFoundException("해당 일정이 없습니다."));
         Comment comment = new Comment(request.getContents(), user, schedule);
         Comment savedComment = commentRepository.save(comment);
         return new CreateCommentResponse(
