@@ -3,7 +3,6 @@ package com.example.scheduleapp2.controller;
 import com.example.scheduleapp2.dto.comment.CreateCommentRequest;
 import com.example.scheduleapp2.dto.comment.CreateCommentResponse;
 import com.example.scheduleapp2.dto.comment.GetCommentResponse;
-import com.example.scheduleapp2.dto.schedule.GetScheduleResponse;
 import com.example.scheduleapp2.service.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +30,7 @@ public class CommentController {
 
     @GetMapping
     public ResponseEntity<List<GetCommentResponse>> getComment(){
-        List<GetScheduleResponse> result = commentService.findAll();
+        List<GetCommentResponse> result = commentService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 }

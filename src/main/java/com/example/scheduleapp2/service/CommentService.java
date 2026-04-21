@@ -2,6 +2,7 @@ package com.example.scheduleapp2.service;
 
 import com.example.scheduleapp2.dto.comment.CreateCommentRequest;
 import com.example.scheduleapp2.dto.comment.CreateCommentResponse;
+import com.example.scheduleapp2.dto.comment.GetCommentResponse;
 import com.example.scheduleapp2.entity.Comment;
 import com.example.scheduleapp2.entity.Schedule;
 import com.example.scheduleapp2.entity.User;
@@ -10,6 +11,9 @@ import com.example.scheduleapp2.repository.ScheduleRepository;
 import com.example.scheduleapp2.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -42,5 +46,20 @@ public class CommentService {
                 savedComment.getCreatedAt(),
                 savedComment.getModifiedAt()
         );
+    }
+
+    @Transactional(readOnly = true)
+    public List<GetCommentResponse> findAll() {
+        return commentRepository.findAll()
+                .stream()
+                .map(comment -> new GetCommentResponse(
+                        comment.getId(),
+                        comment.getContents(),
+                        comment.getUser().getId(),
+                        comment.getSchedule().getId(),
+                        comment.getCreatedAt(),
+                        comment.getModifiedAt()
+                ))
+                .collect(Collectors.toList());
     }
 }
