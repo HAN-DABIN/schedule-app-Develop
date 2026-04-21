@@ -1,6 +1,6 @@
 package com.example.scheduleapp2.exception;
 
-import com.example.scheduleapp2.dto.exception.ErrorResponse;
+import com.example.scheduleapp2.exception.exceptionDto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
