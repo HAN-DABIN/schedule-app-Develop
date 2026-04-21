@@ -25,7 +25,6 @@ public class BaseEntity {
     // 생성자
 
     // 기능
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }

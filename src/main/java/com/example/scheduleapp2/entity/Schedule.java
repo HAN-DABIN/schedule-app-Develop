@@ -40,8 +40,6 @@ public class Schedule extends BaseEntity{
     public User getUser() {
         return user;
     }
-
-
     public String getTitle() {
         return title;
     }
