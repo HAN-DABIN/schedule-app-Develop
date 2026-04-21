@@ -1,11 +1,10 @@
 package com.example.scheduleapp2.dto.comment;
 
-import com.example.scheduleapp2.entity.Schedule;
-
 public class CreateCommentRequest {
     private String contents;
-    private Long scheduleId;
     private Long userId;
+    private Long scheduleId;
+
 
     public String getContents() {
         return contents;

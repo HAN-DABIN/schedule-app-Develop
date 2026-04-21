@@ -8,16 +8,16 @@ import java.time.LocalDateTime;
 public class CreateCommentResponse {
     private final Long id;
     private final String contents;
-    private final Long scheduleId;
     private final Long userId;
+    private final Long scheduleId;
     private final LocalDateTime createAt;
     private final LocalDateTime modifiedAt;
 
-    public CreateCommentResponse(Long id, String contents, Long scheduleId, Long userId, LocalDateTime createAt, LocalDateTime modifiedAt) {
+    public CreateCommentResponse(Long id, String contents, Long userId, Long scheduleId, LocalDateTime createAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.contents = contents;
-        this.scheduleId = scheduleId;
         this.userId = userId;
+        this.scheduleId = scheduleId;
         this.createAt = createAt;
         this.modifiedAt = modifiedAt;
     }
@@ -30,12 +30,12 @@ public class CreateCommentResponse {
         return contents;
     }
 
-    public Long getScheduleId() {
-        return scheduleId;
-    }
-
     public Long getUserId() {
         return userId;
+    }
+
+    public Long getScheduleId() {
+        return scheduleId;
     }
 
     public LocalDateTime getCreateAt() {

@@ -5,10 +5,7 @@ import com.example.scheduleapp2.dto.comment.CreateCommentResponse;
 import com.example.scheduleapp2.service.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/comments")
@@ -27,5 +24,4 @@ public class CommentController {
             @RequestBody CreateCommentRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(commentService.save(request));
     }
-
 }

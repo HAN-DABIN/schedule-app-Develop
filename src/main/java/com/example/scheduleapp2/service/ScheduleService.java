@@ -28,7 +28,7 @@ public class ScheduleService {
     @Transactional
     public CreateScheduleResponse save(CreateScheduleRequest request) {
         User user = userRepository.findById(request.getUserId())
-                .orElseThrow(() -> new IllegalStateException("해당 유저가 없습니다."));
+                .orElseThrow(() -> new ScheduleNotFoundException("해당 유저가 없습니다."));
         Schedule schedule = new Schedule(user, request.getTitle(), request.getContents());
         Schedule savedSchedule = scheduleRepository.save(schedule);
         return new CreateScheduleResponse(
