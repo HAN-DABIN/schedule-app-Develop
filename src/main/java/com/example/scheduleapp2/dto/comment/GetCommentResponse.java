@@ -2,7 +2,7 @@ package com.example.scheduleapp2.dto.comment;
 
 import java.time.LocalDateTime;
 
-public class CreateCommentResponse {
+public class GetCommentResponse {
     private final Long id;
     private final String contents;
     private final Long userId;
@@ -10,7 +10,7 @@ public class CreateCommentResponse {
     private final LocalDateTime createAt;
     private final LocalDateTime modifiedAt;
 
-    public CreateCommentResponse(Long id, String contents, Long userId, Long scheduleId, LocalDateTime createAt, LocalDateTime modifiedAt) {
+    public GetCommentResponse(Long id, String contents, Long userId, Long scheduleId, LocalDateTime createAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.contents = contents;
         this.userId = userId;
