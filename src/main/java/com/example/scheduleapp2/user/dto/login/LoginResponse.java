@@ -1,5 +1,6 @@
 package com.example.scheduleapp2.user.dto.login;
 
+// 비밀번호 응답 금지!
 public class LoginResponse {
     // 속성
     private final Long id;

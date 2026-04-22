@@ -25,7 +25,6 @@ public class CreateScheduleResponse {
     }
 
     // 기능
-
     public Long getId() {
         return id;
     }

@@ -7,14 +7,14 @@ import jakarta.validation.constraints.Size;
 
 public class UpdateScheduleRequest {
     // 속성
-    @NotNull(message = "유저 ID는 필수입니다.")
-    @Positive(message = "유저 ID는 1 이상의 양수여야 합니다.")
+    @NotNull(message = "유저 ID는 필수 입력값입니다.") // null허용 금지
+    @Positive(message = "유저 ID는 1 이상의 양수여야 합니다.") // 1이상 양수만 가능
     private Long userId;
-    @NotBlank(message = "일정 제목은 필수 입력값입니다.")
-    @Size(max = 20, message = "일정 제목은 최대 {max}자까지 입력 가능합니다.")
+    @NotBlank(message = "일정 제목은 필수 입력값입니다.") // null허용 금지
+    @Size(max = 20, message = "일정 제목은 최대 {max}자까지 입력 가능합니다.") // 최대 20자까지
     private String title;
-    @NotBlank(message = "일정 내용은 필수 입력값입니다.")
-    @Size(max = 50, message = "일정 내용은 최대 {max}자까지 입력 가능합니다.")
+    @NotBlank(message = "일정 내용은 필수 입력값입니다.") // 비어있기 금지
+    @Size(max = 50, message = "일정 내용은 최대 {max}자까지 입력 가능합니다.") // 최대 50자까지
     private String contents;
 
     // 생성자

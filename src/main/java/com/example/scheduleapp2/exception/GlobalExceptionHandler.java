@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    // 커스텀 예외 처리
     @ExceptionHandler(ServiceException.class)
     public ResponseEntity<ErrorResponse> handleServiceException(ServiceException ex) {
         return ResponseEntity
@@ -16,17 +17,22 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse(ex.getMessage()));
     }
 
+    // validation 예외 처리
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    // @Valid 검증 실패 시 발생하는 예외 처리
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        // 검증 실패한 에러 중 첫 번째 에러 메세지 추출
         String errorMessage = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
                 .findFirst()
                 .map(fieldError -> fieldError.getDefaultMessage())
                 .orElse("입력 값이 올바르지 않습니다.");
+        // 404에러 응답
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(errorMessage));
     }
 
+    // 500 예외 처리
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception ex) {
         return ResponseEntity

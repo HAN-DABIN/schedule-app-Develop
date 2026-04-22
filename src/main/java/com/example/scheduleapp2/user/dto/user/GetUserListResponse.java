@@ -3,6 +3,7 @@ package com.example.scheduleapp2.user.dto.user;
 import java.time.LocalDateTime;
 import java.util.List;
 
+// 다 건 조회 DTO
 public class GetUserListResponse {
     // 속성
     private List<UserDto> userList;
@@ -17,6 +18,7 @@ public class GetUserListResponse {
         return userList;
     }
 
+    // 내부 DTO (중첩 DTO)
     public static class UserDto {
         // 속성
         private final Long id;

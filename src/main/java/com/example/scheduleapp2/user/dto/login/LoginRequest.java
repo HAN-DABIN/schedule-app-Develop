@@ -6,12 +6,12 @@ import jakarta.validation.constraints.Pattern;
 
 public class LoginRequest {
     // 속성
-    @NotBlank(message = "이메일은 필수 입력값입니다.")
-    @Email(message = "올바른 이메일 형식이 아닙니다.")
+    @NotBlank(message = "이메일은 필수 입력값입니다.") // 빈칸 금지
+    @Email(message = "올바른 이메일 형식이 아닙니다.") // 이메일 형식 필수 (aaa@aaa.com)
     private String email;
 
-    @NotBlank(message = "비밀번호는 필수 입력값입니다.")
-    @Pattern(
+    @NotBlank(message = "비밀번호는 필수 입력값입니다.") // 빈칸 금지
+    @Pattern( // 영문, 숫자 포함 8자 이상
             regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$",
             message = "비밀번호는 영문자와 숫자를 포함한 8자 이상이어야 합니다."
     )

@@ -16,6 +16,8 @@ public class GetCommentListResponse {
     public List<GetCommentResponse> getCommentList() {
         return commentList;
     }
+
+    // 내부 DTO (중첩DTO)
     public static class GetCommentResponse {
         private final Long id;
         private final String contents;

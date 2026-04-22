@@ -2,6 +2,7 @@ package com.example.scheduleapp2.schedule.dto;
 
 import java.time.LocalDateTime;
 
+// 다 건 조회 DTO
 public class GetOneScheduleResponse {
     // 속성
     private Long id;
@@ -25,7 +26,6 @@ public class GetOneScheduleResponse {
     }
 
     // 기능
-
     public Long getId() {
         return id;
     }

@@ -18,6 +18,7 @@ public class GetScheduleListResponse {
     }
 
 
+    // 내부 DTO (중첩 DTO)
     public static class ScheduleDto {
         // 속성
         private Long id;

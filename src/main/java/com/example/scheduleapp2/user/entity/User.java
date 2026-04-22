@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class User extends BaseEntity {
 
     // 속성
-    @Id
+    @Id // 유저 고유 식별자 (PK)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userName;
