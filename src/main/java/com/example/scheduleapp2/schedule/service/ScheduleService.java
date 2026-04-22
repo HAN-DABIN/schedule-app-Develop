@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.scheduleapp2.schedule.repository.ScheduleRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,29 +42,30 @@ public class ScheduleService {
                 savedSchedule.getModifiedAt()
         );
     }
-
     @Transactional(readOnly = true)
-    public List<GetScheduleResponse> findAll() {
-       return scheduleRepository.findAll()
-               .stream()
-               .map(schedule -> new GetScheduleResponse(
-                       schedule.getId(),
-                       schedule.getUser().getId(),
-                       schedule.getUser().getUserName(),
-                       schedule.getTitle(),
-                       schedule.getContents(),
-                       schedule.getCreatedAt(),
-                       schedule.getModifiedAt()
-               ))
-               .collect(Collectors.toList());
+    public GetScheduleListResponse findAll() {
+        List<Schedule> scheduleList = scheduleRepository.findAll();
+        List<GetScheduleListResponse.GetScheduleResponse> scheduleResponses = scheduleList.stream()
+                .map(schedule -> new GetScheduleListResponse.GetScheduleResponse(
+                        schedule.getId(),
+                        schedule.getUser().getId(),
+                        schedule.getUser().getUserName(),
+                        schedule.getTitle(),
+                        schedule.getContents(),
+                        schedule.getCreatedAt(),
+                        schedule.getModifiedAt()
+                ))
+                .collect(Collectors.toList());
+        return new GetScheduleListResponse(scheduleResponses);
     }
 
+
     @Transactional(readOnly = true)
-    public GetScheduleResponse findOne(Long scheduleId) {
+    public GetScheduleListResponse.GetScheduleResponse findOne(Long scheduleId) {
             Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                     () -> new ScheduleNotFoundException("해당 일정을 찾을 수 없습니다.")
             );
-            return new GetScheduleResponse(
+            return new GetScheduleListResponse.GetScheduleResponse(
                     schedule.getId(),
                     schedule.getUser().getId(),
                     schedule.getUser().getUserName(),
