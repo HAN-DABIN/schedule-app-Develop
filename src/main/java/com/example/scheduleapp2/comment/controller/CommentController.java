@@ -2,6 +2,7 @@ package com.example.scheduleapp2.comment.controller;
 
 import com.example.scheduleapp2.comment.dto.CreateCommentRequest;
 import com.example.scheduleapp2.comment.dto.CreateCommentResponse;
+import com.example.scheduleapp2.comment.dto.GetCommentListResponse;
 import com.example.scheduleapp2.comment.dto.GetCommentResponse;
 import com.example.scheduleapp2.comment.service.CommentService;
 import jakarta.validation.Valid;
@@ -31,8 +32,7 @@ public class CommentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GetCommentResponse>> getComment(){
-        List<GetCommentResponse> result = commentService.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+    public ResponseEntity<GetCommentListResponse> getComment(){
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.findAll());
     }
 }

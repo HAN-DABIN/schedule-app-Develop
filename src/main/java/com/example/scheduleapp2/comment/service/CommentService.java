@@ -2,10 +2,12 @@ package com.example.scheduleapp2.comment.service;
 
 import com.example.scheduleapp2.comment.dto.CreateCommentRequest;
 import com.example.scheduleapp2.comment.dto.CreateCommentResponse;
+import com.example.scheduleapp2.comment.dto.GetCommentListResponse;
 import com.example.scheduleapp2.comment.dto.GetCommentResponse;
 import com.example.scheduleapp2.comment.entity.Comment;
 import com.example.scheduleapp2.exception.CommentNotFoundException;
 import com.example.scheduleapp2.schedule.entity.Schedule;
+import com.example.scheduleapp2.user.dto.user.GetUserListResponse;
 import com.example.scheduleapp2.user.entity.User;
 import com.example.scheduleapp2.comment.repository.CommentRepository;
 import com.example.scheduleapp2.schedule.repository.ScheduleRepository;
@@ -13,6 +15,7 @@ import com.example.scheduleapp2.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,10 +53,10 @@ public class CommentService {
     }
 
     @Transactional(readOnly = true)
-    public List<GetCommentResponse> findAll() {
-        return commentRepository.findAll()
-                .stream()
-                .map(comment -> new GetCommentResponse(
+    public GetCommentListResponse findAll(){
+        List<Comment> commentsList = commentRepository.findAll();
+        List<GetCommentListResponse.GetCommentResponse> commentResponses = commentsList.stream()
+                .map(comment -> new GetCommentListResponse.GetCommentResponse(
                         comment.getId(),
                         comment.getContents(),
                         comment.getUser().getId(),
@@ -62,5 +65,6 @@ public class CommentService {
                         comment.getModifiedAt()
                 ))
                 .collect(Collectors.toList());
+        return new GetCommentListResponse(commentResponses);
     }
 }
