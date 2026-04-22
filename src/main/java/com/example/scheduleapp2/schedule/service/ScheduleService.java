@@ -45,8 +45,8 @@ public class ScheduleService {
     @Transactional(readOnly = true)
     public GetScheduleListResponse findAll() {
         List<Schedule> scheduleList = scheduleRepository.findAll();
-        List<GetScheduleListResponse.GetScheduleResponse> scheduleResponses = scheduleList.stream()
-                .map(schedule -> new GetScheduleListResponse.GetScheduleResponse(
+        List<GetScheduleListResponse.ScheduleDto> scheduleResponses = scheduleList.stream()
+                .map(schedule -> new GetScheduleListResponse.ScheduleDto(
                         schedule.getId(),
                         schedule.getUser().getId(),
                         schedule.getUser().getUserName(),
@@ -61,11 +61,11 @@ public class ScheduleService {
 
 
     @Transactional(readOnly = true)
-    public GetScheduleListResponse.GetScheduleResponse findOne(Long scheduleId) {
+    public GetOneScheduleResponse findOne(Long scheduleId) {
             Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                     () -> new ScheduleNotFoundException("해당 일정을 찾을 수 없습니다.")
             );
-            return new GetScheduleListResponse.GetScheduleResponse(
+            return new GetOneScheduleResponse(
                     schedule.getId(),
                     schedule.getUser().getId(),
                     schedule.getUser().getUserName(),

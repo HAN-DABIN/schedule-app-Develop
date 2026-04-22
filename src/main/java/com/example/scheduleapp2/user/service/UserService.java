@@ -43,8 +43,8 @@ public class UserService {
     @Transactional(readOnly = true)
     public GetUserListResponse findAll() {
         List<User> userList = userRepository.findAll();
-        List<GetUserListResponse.GetUserResponse> userResponses = userList.stream()
-                .map(user -> new GetUserListResponse.GetUserResponse(
+        List<GetUserListResponse.UserDto> userResponses = userList.stream()
+                .map(user -> new GetUserListResponse.UserDto(
                         user.getId(),
                         user.getUserName(),
                         user.getEmail(),
@@ -56,11 +56,11 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public GetUserListResponse.GetUserResponse findOne(Long userId) {
+    public GetOneUserResponse findOne(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException("해당 유저가 없습니다.")
         );
-        return new GetUserListResponse.GetUserResponse(
+        return new GetOneUserResponse(
                 user.getId(),
                 user.getUserName(),
                 user.getEmail(),

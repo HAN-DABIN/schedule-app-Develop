@@ -5,20 +5,20 @@ import java.util.List;
 
 public class GetScheduleListResponse {
     // 속성
-    private List<GetScheduleResponse> scheduleList;
+    private List<ScheduleDto> scheduleList;
 
     // 생성자
-    public GetScheduleListResponse(List<GetScheduleResponse> memberList) {
+    public GetScheduleListResponse(List<ScheduleDto> memberList) {
         this.scheduleList = memberList;
     }
 
     // 기능
-    public List<GetScheduleResponse> getScheduleList() {
+    public List<ScheduleDto> getScheduleList() {
         return scheduleList;
     }
 
 
-    public static class GetScheduleResponse {
+    public static class ScheduleDto {
         // 속성
         private Long id;
         private Long userId;
@@ -30,7 +30,7 @@ public class GetScheduleListResponse {
 
 
         // 생성자
-        public GetScheduleResponse(Long id, Long userId, String userName, String title, String contents, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        public ScheduleDto(Long id, Long userId, String userName, String title, String contents, LocalDateTime createdAt, LocalDateTime modifiedAt) {
             this.id = id;
             this.userId = userId;
             this.userName = userName;

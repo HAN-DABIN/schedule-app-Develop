@@ -5,19 +5,19 @@ import java.util.List;
 
 public class GetUserListResponse {
     // 속성
-    private List<GetUserResponse> userList;
+    private List<UserDto> userList;
 
     // 생성자
-    public GetUserListResponse(List<GetUserResponse> userList) {
+    public GetUserListResponse(List<UserDto> userList) {
         this.userList = userList;
     }
 
     // 기능
-    public List<GetUserResponse> getUserList() {
+    public List<UserDto> getUserList() {
         return userList;
     }
 
-    public static class GetUserResponse {
+    public static class UserDto {
         // 속성
         private final Long id;
         private final String userName;
@@ -26,7 +26,7 @@ public class GetUserListResponse {
         private final LocalDateTime modifiedAt;
 
         // 생성자
-        public GetUserResponse(Long id, String userName, String email, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        public UserDto(Long id, String userName, String email, LocalDateTime createdAt, LocalDateTime modifiedAt) {
             this.id = id;
             this.userName = userName;
             this.email = email;
