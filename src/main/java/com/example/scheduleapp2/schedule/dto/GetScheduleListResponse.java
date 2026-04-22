@@ -5,16 +5,16 @@ import java.util.List;
 
 public class GetScheduleListResponse {
     // 속성
-    private List<GetScheduleResponse> memberList;
+    private List<GetScheduleResponse> scheduleList;
 
     // 생성자
     public GetScheduleListResponse(List<GetScheduleResponse> memberList) {
-        this.memberList = memberList;
+        this.scheduleList = memberList;
     }
 
     // 기능
-    public List<GetScheduleResponse> getMemberList() {
-        return memberList;
+    public List<GetScheduleResponse> getScheduleList() {
+        return scheduleList;
     }
 
 

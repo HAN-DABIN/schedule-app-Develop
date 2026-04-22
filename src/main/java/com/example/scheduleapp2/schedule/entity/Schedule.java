@@ -38,14 +38,12 @@ public class Schedule extends BaseEntity {
     public Long getId() {
         return id;
     }
-
     public User getUser() {
         return user;
     }
     public String getTitle() {
         return title;
     }
-
     public String getContents() {
         return contents;
     }
